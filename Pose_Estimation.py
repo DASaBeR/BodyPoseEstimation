@@ -21,6 +21,13 @@ while True:
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = pose.process(imgRGB)
 
+    land_mark = results.pose_landmarks.landmark
+    res_dict = list(land_mark)
+    x = res_dict[0].x
+    y = res_dict[0].y
+    z = res_dict[0].z
+
+    #print(res_dict[0])
 
     if results.pose_landmarks:
         if True:
