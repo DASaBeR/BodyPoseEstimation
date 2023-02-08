@@ -2,7 +2,9 @@
 Human Body Pose Estimation Using MediaPipe
 
 # How to use 
-I used Python 3.9 to run the project.
+- Install OpenCV 4.6
+- Install MediaPipe
+- Install Python 3.9
 
 ## how to Get Other Poses :
 You can change the land_mark[**t**] to get other poses.
