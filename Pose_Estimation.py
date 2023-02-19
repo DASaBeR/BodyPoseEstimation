@@ -2,6 +2,7 @@ import cvzone
 import cv2
 import mediapipe as mp
 import socket
+import numpy as np
 
 mpPose = mp.solutions.pose
 pose = mpPose.Pose(static_image_mode=False,
@@ -28,16 +29,23 @@ while True:
     data=[]
     if(results.pose_landmarks):
         land_mark = results.pose_landmarks.landmark
-        res_dict = list(land_mark)
-        x = res_dict[0].x
-        y = res_dict[0].y
-        z = res_dict[0].z
-      
-        data.extend([x , y , z])
+        res_dicts = list(land_mark)
+        #print(type(res_dicts))
+        
+        for i in range(0,len(res_dicts)):
+            #print(len(res_dicts))
+            #print(res_dicts[i])
+            x = res_dicts[i].x
+            y = res_dicts[i].y
+            z = res_dicts[i].z
+            data.append([x , y , z])
+        
      ######## Send data  ##########
         if(data):
             dataSocket.sendto(str.encode(str(data)),serverAddressPort)
-
+            ##### ** Hint ** #####
+            #print(str.encode(str(data)))
+            #print(data[0][1])
         mpDraw.draw_landmarks(img, results.pose_landmarks,mpPose.POSE_CONNECTIONS)
         
     else:
