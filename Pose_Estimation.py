@@ -9,7 +9,8 @@ mpPose = mp.solutions.pose
 pose = mpPose.Pose(static_image_mode=False,
                                      smooth_landmarks=False,
                                      min_detection_confidence=0.7,
-                                     min_tracking_confidence=0.6)
+                                     min_tracking_confidence=0.6,
+                                     model_complexity=0)
 mpDraw = mp.solutions.drawing_utils
 fpsReader = cvzone.FPS()
 
